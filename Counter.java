@@ -3,7 +3,7 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class Counter extends Frame implements ActionListener{
+public class Counter extends Frame implements ActionListener, WindowListener{
 	
 	private Label lbl;
 	private TextField txt;
@@ -27,6 +27,8 @@ public class Counter extends Frame implements ActionListener{
 		add(btn);
 		
 		btn.addActionListener(this);
+		
+		addWindowListener(this);		//fire the windowEvent on 'this' listner object
 		
 		//setting title
 		
@@ -61,7 +63,9 @@ public class Counter extends Frame implements ActionListener{
 		// just to initialise a 'counter' object
 			
 			Counter app = new Counter();
-			System.out.println("\n ********************** USE 'CNTRL+C' TO CLOSE THE WINDOW *************************\n"); 
+			
+			//alternate way
+			//System.out.println("\n ********************** USE 'CNTRL+C' TO CLOSE THE WINDOW *************************\n"); 
 	}
 	
 	@Override
@@ -72,5 +76,31 @@ public class Counter extends Frame implements ActionListener{
 		//System.out.println(" USE 'CNTRL+C' TO CLOSE THE WINDOW"); 
 	}
 	//when button is clicked, it fires ActionEvent Listener which provides actionevent handler called actionPerformed(internally) 
+	//ActionListener has only 1 abstract method actionPerformed() , hence no other method is called...
+	
+	@Override
+	public void windowClosing(WindowEvent we){
+		System.exit(0);
+	}
+	//we have to add the other abstract methods also but they should be left empty so that there would be no CTE
+	
+	@Override
+	public void windowOpened(WindowEvent we){}
+	
+	@Override
+	public void windowClosed(WindowEvent we){}
+	
+	@Override
+	public void windowActivated(WindowEvent we){}
+	
+	@Override
+	public void windowDeactivated(WindowEvent we){}
+	
+	@Override
+	public void windowIconified(WindowEvent we){}
+	
+	@Override
+	public void windowDeiconified(WindowEvent we){}
+	
 	
 }//end class
